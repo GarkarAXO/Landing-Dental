@@ -1,0 +1,79 @@
+---
+---
+<header id="siteHeader" class="fixed top-0 w-full z-50 px-4 md:px-14 transition-all duration-500">
+  <div class="max-w-7xl mx-auto h-16 md:h-20 grid grid-cols-2 md:grid-cols-3 items-center">
+    
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-xl md:text-2xl text-slate-800">dentistry</span>
+      <h1 class="text-xs md:text-lg font-display font-bold tracking-tight text-slate-900 uppercase leading-none">ImplantTech</h1>
+    </div>
+
+    <!-- Nav Central (Desktop) -->
+    <nav class="hidden md:flex items-center justify-center gap-10">
+      <a class="text-slate-500 hover:text-primary transition-colors text-[9px] font-black uppercase tracking-[0.3em]" href="#sistema">Ingeniería</a>
+      <a class="text-slate-500 hover:text-primary transition-colors text-[9px] font-black uppercase tracking-[0.3em]" href="#evidencia">Documentación</a>
+    </nav>
+
+    <!-- Acción / Hamburguesa -->
+    <div class="flex justify-end items-center gap-4">
+      <button class="hidden md:flex bg-white/10 border border-slate-200 px-6 py-2 rounded-full text-[9px] font-black tracking-[0.2em] uppercase text-slate-600 hover:bg-white hover:shadow-sm transition-all">
+        AGENDAR CITA
+      </button>
+      <button id="menuButton" class="md:hidden flex text-slate-800 p-2 -mr-2">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<div id="mobileMenu" class="fixed inset-0 bg-white/98 backdrop-blur-2xl z-[100] flex flex-col items-center justify-center gap-10 translate-x-full transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none">
+  <button id="closeMenu" class="absolute top-6 right-6 text-slate-800">
+    <span class="material-symbols-outlined text-3xl">close</span>
+  </button>
+  <a class="text-2xl font-display font-bold text-slate-800 hover:text-primary transition-colors" href="#sistema">Ingeniería</a>
+  <a class="text-2xl font-display font-bold text-slate-800 hover:text-primary transition-colors" href="#evidencia">Documentación</a>
+  <button class="bg-white/10 border border-slate-200 px-10 py-4 rounded-full text-[11px] font-black tracking-[0.2em] uppercase text-slate-600 shadow-sm">
+    AGENDAR CITA
+  </button>
+</div>
+
+<style>
+  #siteHeader.scrolled {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(51, 65, 85, 0.08);
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const header = document.getElementById('siteHeader');
+  const menu = document.getElementById('mobileMenu');
+  const openBtn = document.getElementById('menuButton');
+  const closeBtn = document.getElementById('closeMenu');
+  const menuLinks = menu.querySelectorAll('a, button');
+
+  // ✅ Efecto de Scroll idéntico al original
+  ScrollTrigger.create({
+    start: "top -40",
+    onUpdate: (self) => {
+      if (self.direction === 1) header.classList.add('scrolled');
+      else if (self.scroll() < 40) header.classList.remove('scrolled');
+    }
+  });
+
+  // ✅ Toggle Menú
+  function toggle() {
+    menu.classList.toggle('translate-x-full');
+    menu.classList.toggle('pointer-events-none');
+  }
+
+  openBtn.addEventListener('click', toggle);
+  closeBtn.addEventListener('click', toggle);
+  menuLinks.forEach(link => link.addEventListener('click', toggle));
+</script>

@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --bg-gray: #f4f7fa; --text-main: #334155; }
+
+body { 
+  background-color: var(--bg-gray); 
+  margin: 0; 
+  padding: 0; 
+  overflow-x: hidden;
+  /* ✅ CURSOR PERSONALIZADO (Flecha Negra) */
+  cursor: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.5 3L19 12L4.5 21V3Z' fill='black' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E"), auto;
+}
+
+/* Mantener el puntero para elementos interactivos */
+a, button, [role="button"] {
+  cursor: pointer;
+}
+
+.font-display { font-family: 'Space Grotesk', sans-serif; }
+.font-body { font-family: 'Noto Sans', sans-serif; }

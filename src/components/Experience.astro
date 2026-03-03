@@ -1,0 +1,77 @@
+---
+---
+<section id="experiencia" class="py-24 md:py-40 bg-[#f8fafc] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-8 md:px-14">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
+      
+      <!-- Lado Izquierdo: Avales y Conocimientos -->
+      <div class="order-2 md:order-1 space-y-12">
+        <div class="exp-item opacity-0 translate-y-10">
+          <div class="flex items-center gap-4 mb-4">
+            <span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
+            <h4 class="font-display font-bold text-slate-900 uppercase tracking-widest text-xs">Estándares Internacionales</h4>
+          </div>
+          <p class="text-slate-500 leading-relaxed font-light">
+            Nuestros procesos de fabricación cumplen con las normativas **ISO 13485**, garantizando dispositivos médicos de clase mundial con trazabilidad total.
+          </p>
+        </div>
+
+        <div class="exp-item opacity-0 translate-y-10">
+          <div class="flex items-center gap-4 mb-4">
+            <span class="material-symbols-outlined text-primary text-3xl">biotech</span>
+            <h4 class="font-display font-bold text-slate-900 uppercase tracking-widest text-xs">Investigación Biomédica</h4>
+          </div>
+          <p class="text-slate-500 leading-relaxed font-light">
+            Colaboramos con centros de ingeniería avanzada para el desarrollo de superficies bioactivas que reducen los tiempos de oseointegración en un 40%.
+          </p>
+        </div>
+
+        <div class="exp-item opacity-0 translate-y-10">
+          <div class="flex items-center gap-4 mb-4">
+            <span class="material-symbols-outlined text-primary text-3xl">school</span>
+            <h4 class="font-display font-bold text-slate-900 uppercase tracking-widest text-xs">Formación Continua</h4>
+          </div>
+          <p class="text-slate-500 leading-relaxed font-light">
+            Más de 500 profesionales capacitados anualmente en protocolos quirúrgicos de carga inmediata y estética sobre implantes.
+          </p>
+        </div>
+      </div>
+
+      <!-- Lado Derecho: Título Grande -->
+      <div class="order-1 md:order-2">
+        <div class="exp-title opacity-0 translate-x-20">
+          <span class="text-primary font-black text-6xl md:text-9xl leading-none block mb-4">10+</span>
+          <h2 class="text-slate-900 font-display text-4xl md:text-6xl font-light leading-tight tracking-tighter">
+            Años de <br><span class="text-slate-400">Excelencia <br>Clínica.</span>
+          </h2>
+          <div class="w-20 h-1 bg-primary mt-8"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Animación de entrada sutil
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#experiencia",
+      start: "top 70%", // Empieza cuando la sección entra un 30% en el visor
+      toggleActions: "play none none reverse"
+    }
+  });
+
+  tl.to(".exp-title", { opacity: 1, x: 0, duration: 1.2, ease: "power4.out" })
+    .to(".exp-item", { 
+      opacity: 1, 
+      y: 0, 
+      duration: 0.8, 
+      stagger: 0.2, 
+      ease: "power2.out" 
+    }, "-=0.8");
+</script>
