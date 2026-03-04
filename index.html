@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>ImplantTech | Ingeniería Clínica</title>
+
+  <!-- Optimizaciones de Carga -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: { 
+            primary: "#137fec",
+            "studio-gray": "#f4f7fa",
+            "menu-gray": "#334155"
+          },
+          fontFamily: { display: ["Space Grotesk", "sans-serif"], body: ["Noto Sans", "sans-serif"] }
+        }
+      }
+    }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root { --bg-gray: #f4f7fa; --text-main: #334155; }
+    body { background-color: var(--bg-gray); margin: 0; padding: 0; overflow-x: hidden; }
+
+    .stage {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: 
+        radial-gradient(circle at 95% 30%, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 50%),
+        radial-gradient(circle at 5% 80%, rgba(226, 232, 240, 0.5) 0%, rgba(226, 232, 240, 0) 40%),
+        linear-gradient(135deg, #f8fafc 0%, #d1dbe5 100%);
+      overflow: hidden;
+    }
+
+    .pin-wrap {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      will-change: transform;
+    }
+
+    #siteHeader {
+      background: transparent;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #siteHeader.scrolled {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(51, 65, 85, 0.08);
+    }
+
+    .component-layer {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) translateZ(0);
+      will-change: transform, top, opacity;
+      backface-visibility: hidden;
+    }
+    #part-crown { z-index: 20; }
+    #part-base-unit { z-index: 10; }
+
+    .texture-ceramic { filter: drop-shadow(0 25px 45px rgba(0,0,0,0.08)); }
+    .texture-titanium { filter: drop-shadow(0 20px 40px rgba(0,0,0,0.12)); }
+
+    /* MENU MOBILE DRAWER */
+    #mobileMenu {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(25px);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      transform: translateX(100%);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #mobileMenu.active { transform: translateX(0); }
+
+    .btn-menu-pill {
+      background: rgba(51, 65, 85, 0.04);
+      border: 1px solid rgba(51, 65, 85, 0.12);
+      color: var(--text-main);
+      transition: all 0.4s ease;
+    }
+
+    .data-chip {
+      position: absolute;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 9px;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 30;
+    }
+  </style>
+</head>
+
+<body class="font-body antialiased selection:bg-primary/20">
+
+  <!-- ✅ NAV DRAWER MOBILE -->
+  <div id="mobileMenu">
+    <button onclick="toggleMenu()" class="absolute top-6 right-6 text-slate-800">
+      <span class="material-symbols-outlined text-3xl">close</span>
+    </button>
+    <a class="text-2xl font-display font-bold text-slate-800 hover:text-primary transition-colors" href="#sistema" onclick="toggleMenu()">Ingeniería</a>
+    <a class="text-2xl font-display font-bold text-slate-800 hover:text-primary transition-colors" href="#evidencia" onclick="toggleMenu()">Documentación</a>
+    <button class="bg-primary text-white px-10 py-4 rounded-full font-bold mt-4 shadow-xl shadow-primary/20">AGENDAR CITA</button>
+  </div>
+
+  <!-- ✅ HEADER -->
+  <header id="siteHeader" class="fixed top-0 w-full z-50 px-4 md:px-14">
+    <div class="max-w-7xl mx-auto h-16 md:h-20 grid grid-cols-2 md:grid-cols-3 items-center">
+      
+      <!-- Logo (Izquierda) -->
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-xl md:text-2xl text-slate-800">dentistry</span>
+        <h1 class="text-xs md:text-lg font-display font-bold tracking-tight text-slate-900 uppercase leading-none">ImplantTech</h1>
+      </div>
+
+      <!-- Nav Central (Centro Desktop) -->
+      <nav class="hidden md:flex items-center justify-center gap-10">
+        <a class="text-slate-500 hover:text-primary transition-colors text-[9px] font-black uppercase tracking-[0.3em]" href="#sistema">Ingeniería</a>
+        <a class="text-slate-500 hover:text-primary transition-colors text-[9px] font-black uppercase tracking-[0.3em]" href="#evidencia">Documentación</a>
+      </nav>
+
+      <!-- Acción (Derecha) -->
+      <div class="flex justify-end items-center gap-4">
+        <button class="hidden md:flex btn-menu-pill items-center gap-3 px-6 py-2 rounded-full text-[9px] font-black tracking-[0.2em] uppercase">
+          AGENDAR CITA
+        </button>
+        <!-- Hamburguesa -->
+        <button onclick="toggleMenu()" class="md:hidden flex text-slate-800 p-2 -mr-2">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <section id="sistema" class="stage">
+    <div class="pin-wrap">
+
+      <!-- HERO TEXTS -->
+      <div id="heroText" class="absolute inset-0 flex items-start md:items-center px-6 md:px-20 z-20 pointer-events-none">
+        <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12 items-start md:items-end pt-20 md:pt-0">
+          <div class="max-w-xl">
+            <span class="inline-block px-3 py-1 bg-slate-200 text-slate-600 text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] mb-4 md:mb-8 rounded-sm">Professional Grade</span>
+            <h2 class="text-slate-900 font-display text-4xl md:text-7xl font-light leading-[1.1] tracking-tight mb-4 md:mb-10">Precisión en <br><span class="text-slate-400">dos piezas.</span></h2>
+            <p class="text-slate-500 text-[11px] md:text-lg max-w-sm leading-relaxed border-l-2 border-slate-200 pl-4 md:pl-6 italic">Ingeniería de alta gama diseñada para la excelencia estética.</p>
+          </div>
+          <div class="hidden md:block text-right max-w-sm ml-auto">
+            <h3 class="text-slate-900 font-display text-3xl font-light leading-snug mb-6">Innovación para la <br><span class="text-primary/60 font-medium">salud integral.</span></h3>
+            <p class="text-slate-500 text-base leading-relaxed border-r-2 border-slate-200 pr-6">Redefiniendo el estándar clínico para devolver la confianza y funcionalidad a cada sonrisa.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENSAMBLAJE CENTRAL -->
+      <div id="implantAssembly" class="relative w-[800px] h-[900px] z-10 origin-center">
+        <!-- Luces -->
+        <div id="glow-crown" class="absolute left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-white/20 blur-[150px] rounded-full pointer-events-none" style="top: 200px; mix-blend-mode: plus-lighter;"></div>
+        <div id="glow-base" class="absolute left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-white/30 blur-[130px] rounded-full pointer-events-none" style="top: 450px; mix-blend-mode: plus-lighter;"></div>
+
+        <!-- Corona -->
+        <div class="component-layer w-[700px] h-[450px] z-20" id="part-crown" style="top: 200px;">
+          <div class="w-full h-full bg-contain bg-center bg-no-repeat texture-ceramic"
+               style="background-image:url('https://res.cloudinary.com/defkuaytw/image/upload/q_auto,f_auto/v1772246998/diente_2_jybkfl.png');"></div>
+          <div class="data-chip scale-150" style="top: 10%; left: -10%;">ZrO2 CERAMIC</div>
+        </div>
+        
+        <!-- Implante -->
+        <div class="component-layer w-[480px] h-[650px] z-10" id="part-base-unit" style="top: 473px;">
+          <div class="w-full h-full bg-contain bg-center bg-no-repeat texture-titanium"
+               style="background-image:url('https://res.cloudinary.com/defkuaytw/image/upload/q_auto,f_auto/v1772247003/pieza_uhvfjx.png');"></div>
+          <div class="data-chip scale-150" style="bottom: 15%; right: -10%;">GRADE 5 TITANIUM</div>
+        </div>
+      </div>
+
+      <!-- ETIQUETAS TÉCNICAS -->
+      <div id="label-top" class="absolute left-6 md:left-32 top-1/4 opacity-0 max-w-[180px] md:max-w-xs">
+        <div class="flex items-center gap-4 mb-2">
+          <div class="w-8 h-[1px] bg-primary"></div>
+          <span class="text-[8px] md:text-[10px] font-black text-primary uppercase tracking-widest">Material Premium</span>
+        </div>
+        <h3 class="text-slate-900 font-display font-bold text-xl md:text-3xl">Zirconio Monoblock</h3>
+        <p class="text-slate-500 text-[10px] md:text-sm leading-relaxed font-light mt-2">Estructura cerámica de alta translucidez con resistencia superior a 1200 MPa. Perfil de emergencia natural.</p>
+      </div>
+
+      <div id="label-bottom" class="absolute right-6 md:right-32 bottom-1/4 opacity-0 text-right max-w-[180px] md:max-w-xs">
+        <div class="flex items-center gap-4 flex-row-reverse mb-2">
+          <div class="w-8 h-[1px] bg-primary"></div>
+          <span class="text-[8px] md:text-[10px] font-black text-primary uppercase tracking-widest">Ingeniería Estructural</span>
+        </div>
+        <h3 class="text-slate-900 font-display font-bold text-xl md:text-3xl">Titanio Grado 5</h3>
+        <p class="text-slate-500 text-[10px] md:text-sm leading-relaxed font-light mt-2">Aleación biocompatible Ti-6Al-4V. Superficie tratada para acelerar la oseointegración y garantizar estabilidad mecánica.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN RECURSOS -->
+  <section id="evidencia" class="min-h-[80vh] bg-white flex flex-col items-center justify-center px-8">
+    <div class="max-w-2xl text-center">
+      <h2 class="text-slate-900 font-display text-3xl md:text-4xl font-bold tracking-tight">Recursos Clínicos</h2>
+      <p class="text-slate-500 mt-4 text-sm md:text-lg leading-relaxed">Guías quirúrgicas y estudios de biocompatibilidad.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <button class="px-8 py-3 bg-slate-900 text-white font-bold rounded-full hover:scale-105 transition-transform text-xs">Catálogo PDF</button>
+        <button class="px-8 py-3 bg-slate-100 text-slate-800 font-bold rounded-full text-xs">Estudios</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-12 border-t border-slate-100 px-8 text-center text-slate-400 text-[9px] uppercase tracking-widest font-bold">© 2024 ImplantTech Systems</footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    const header = document.querySelector("#siteHeader");
+
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    let mm = gsap.matchMedia();
+
+    mm.add({
+      isDesktop: "(min-width: 768px)",
+      isMobile: "(max-width: 767px)"
+    }, (context) => {
+      let { isDesktop } = context.conditions;
+
+      const mainTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".stage", 
+          start: "top top", 
+          end: isDesktop ? "+=600" : "+=400", 
+          scrub: 1, 
+          pin: true, 
+          anticipatePin: 1, 
+          invalidateOnRefresh: true
+        }
+      });
+
+      if (isDesktop) {
+        mainTl.to("#heroText", { opacity: 0, y: -60, duration: 0.5 }, 0)
+          .to("#implantAssembly", { scale: 0.6, y: -140, duration: 1 }, 0)
+          .to("#part-base-unit", { top: "650px", duration: 1 }, 0.1)
+          .to("#glow-base", { top: "650px", duration: 1 }, 0.1)
+          .to("#label-top", { opacity: 1, x: 20, duration: 0.8 }, 0.3) 
+          .to("#label-bottom", { opacity: 1, x: -20, duration: 0.8 }, 0.5);
+      } else {
+        gsap.set("#implantAssembly", { scale: 0.3, y: 20 }); // Aún más arriba
+        gsap.set(".data-chip", { display: "none" });
+        mainTl.to("#heroText", { opacity: 0, y: -150, duration: 0.5 }, 0)
+          .to("#implantAssembly", { scale: 0.22, y: -120, duration: 1 }, 0)
+          .to("#part-base-unit", { top: "850px", duration: 1 }, 0.1)
+          .to("#label-top", { opacity: 1, scale: 0.8, y: -60, duration: 0.8 }, 0.3)
+          .to("#label-bottom", { opacity: 1, scale: 0.8, y: 60, duration: 0.8 }, 0.5);
+      }
+    });
+
+    ScrollTrigger.create({
+      start: "top -40",
+      onUpdate: (self) => {
+        if (self.direction === 1) header.classList.add("scrolled");
+        else if (self.scroll() < 40) header.classList.remove("scrolled");
+      }
+    });
+
+    gsap.to(".data-chip", {
+      y: -10, duration: 2, repeat: -1, yoyo: true, ease: "sine.inOut", stagger: 0.5
+    });
+  </script>
+</body>
+</html>
