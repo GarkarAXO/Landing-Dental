@@ -6,84 +6,87 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="ImplantTech | Ingeniería Clínica">
-	<main class="main-gradient">
+	<main>
     <Navbar />
     
-    <section id="sistema" class="stage">
-      <div class="pin-wrap">
-        <!-- Hero Text -->
-        <div id="heroText" class="absolute inset-0 flex items-start md:items-center px-8 md:px-20 z-20 pointer-events-none">
-          <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12 pt-20 md:pt-0">
-            <div class="max-w-xl">
-              <span class="inline-block px-3 py-1 bg-white/50 border border-slate-200 text-slate-600 text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] mb-4 rounded-sm">Professional Grade</span>
-              <h2 class="text-slate-900 font-display text-4xl md:text-7xl font-light leading-[1.1] tracking-tight mb-4">Precisión en <br><span class="text-slate-400">dos piezas.</span></h2>
-              <p class="text-slate-500 text-[11px] md:text-lg max-w-sm leading-relaxed border-l-2 border-primary/30 pl-4 md:pl-6 italic">Ingeniería de alta gama diseñada para la excelencia estética.</p>
+    <!-- ✅ ESCENARIO UNIFICADO: HERO + EXPERIENCIA -->
+    <div class="studio-scene">
+      <section id="sistema" class="stage">
+        <div class="pin-wrap">
+          <!-- Hero Text -->
+          <div id="heroText" class="absolute inset-0 flex items-start md:items-center px-8 md:px-20 z-20 pointer-events-none">
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12 pt-20 md:pt-0">
+              <div class="max-w-xl">
+                <span class="inline-block px-3 py-1 bg-white/50 border border-slate-200 text-slate-600 text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] mb-4 rounded-sm">Professional Grade</span>
+                <h2 class="text-slate-900 font-display text-4xl md:text-7xl font-light leading-[1.1] tracking-tight mb-4">Precisión en <br><span class="text-slate-400">dos piezas.</span></h2>
+                <p class="text-slate-500 text-[11px] md:text-lg max-w-sm leading-relaxed border-l-2 border-primary/30 pl-4 md:pl-6 italic">Ingeniería de alta gama diseñada para la excelencia estética.</p>
+              </div>
+              <div class="hidden md:block text-right max-w-sm ml-auto">
+                <h3 class="text-slate-900 font-display text-3xl font-light leading-snug mb-6">Innovación para la <br><span class="text-primary/60 font-medium">salud integral.</span></h3>
+                <p class="text-slate-500 text-base leading-relaxed border-r-2 border-primary/30 pr-6">Tecnología diseñada para devolver la confianza natural.</p>
+              </div>
             </div>
-            <div class="hidden md:block text-right max-w-sm ml-auto">
-              <h3 class="text-slate-900 font-display text-3xl font-light leading-snug mb-6">Innovación para la <br><span class="text-primary/60 font-medium">salud integral.</span></h3>
-              <p class="text-slate-500 text-base leading-relaxed border-r-2 border-primary/30 pr-6">Tecnología diseñada para devolver la confianza natural.</p>
+          </div>
+
+          <!-- Ensamblaje Central -->
+          <div id="implantAssembly" class="relative w-[800px] h-[900px] z-10 origin-center">
+            <div id="rim-light" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/20 blur-[140px] rounded-full pointer-events-none mix-blend-screen opacity-40"></div>
+
+            <div class="component-layer w-[700px] h-[450px] z-20" id="part-crown" style="top: 200px;">
+              <div class="w-full h-full bg-contain bg-center bg-no-repeat drop-shadow-2xl" id="crown-inner" style="background-image:url('https://res.cloudinary.com/defkuaytw/image/upload/q_auto,f_auto/v1772246998/diente_2_jybkfl.png');"></div>
+            </div>
+            <div class="component-layer w-[480px] h-[650px] z-10" id="part-base-unit" style="top: 473px;">
+              <div class="w-full h-full bg-contain bg-center bg-no-repeat drop-shadow-2xl" id="base-inner" style="background-image:url('https://res.cloudinary.com/defkuaytw/image/upload/q_auto,f_auto/v1772247003/pieza_uhvfjx.png');"></div>
             </div>
           </div>
-        </div>
 
-        <!-- ENSAMBLAJE CENTRAL -->
-        <div id="implantAssembly" class="relative w-[800px] h-[900px] z-10 origin-center">
-          <div id="rim-light" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/20 blur-[140px] rounded-full pointer-events-none mix-blend-screen opacity-40"></div>
-
-          <div class="component-layer w-[700px] h-[450px] z-20" id="part-crown" style="top: 200px;">
-            <div class="w-full h-full bg-contain bg-center bg-no-repeat drop-shadow-2xl" id="crown-inner" style="background-image:url('https://res.cloudinary.com/defkuaytw/image/upload/q_auto,f_auto/v1772246998/diente_2_jybkfl.png');"></div>
+          <!-- Etiquetas Técnicas -->
+          <div id="label-tl" class="absolute left-6 md:left-24 top-[15%] opacity-0 max-w-[180px] md:max-w-xs">
+            <div class="flex items-center gap-4 mb-2">
+              <div class="w-8 h-[1px] bg-primary"></div>
+              <span class="text-[8px] md:text-[10px] font-black text-primary uppercase tracking-widest">Material</span>
+            </div>
+            <h3 class="text-slate-900 font-display font-bold text-xl md:text-3xl">Zirconio Monoblock</h3>
+            <p class="text-slate-500 text-[10px] md:text-sm mt-2">Translucidez natural y resistencia extrema.</p>
           </div>
-          <div class="component-layer w-[480px] h-[650px] z-10" id="part-base-unit" style="top: 473px;">
-            <div class="w-full h-full bg-contain bg-center bg-no-repeat drop-shadow-2xl" id="base-inner" style="background-image:url('https://res.cloudinary.com/defkuaytw/image/upload/q_auto,f_auto/v1772247003/pieza_uhvfjx.png');"></div>
+
+          <div id="label-tr" class="absolute right-6 md:right-24 top-[15%] opacity-0 text-right max-w-[180px] md:max-w-xs">
+            <div class="flex items-center gap-4 flex-row-reverse mb-2">
+              <div class="w-8 h-[1px] bg-primary"></div>
+              <span class="text-[8px] md:text-[10px] font-black text-primary uppercase tracking-widest">Acreditación</span>
+            </div>
+            <h3 class="text-slate-900 font-display font-bold text-xl md:text-3xl">Calidad Certificada</h3>
+            <p class="text-slate-500 text-[10px] md:text-sm mt-2">Normativa internacional ISO 13485.</p>
+          </div>
+
+          <div id="label-bl" class="absolute left-6 md:left-24 bottom-[15%] opacity-0 max-w-[180px] md:max-w-xs">
+            <div class="flex items-center gap-4 mb-2">
+              <div class="w-8 h-[1px] bg-primary"></div>
+              <span class="text-[8px] md:text-[10px] font-black text-primary uppercase tracking-widest">Confianza</span>
+            </div>
+            <h3 class="text-slate-900 font-display font-bold text-xl md:text-3xl uppercase">Garantía Oficial</h3>
+            <p class="text-slate-500 text-[10px] md:text-sm mt-2">Respaldo total y cobertura vitalicia.</p>
+          </div>
+
+          <div id="label-br" class="absolute right-6 md:right-24 bottom-[15%] opacity-0 text-right max-w-[180px] md:max-w-xs">
+            <div class="flex items-center gap-4 flex-row-reverse mb-2">
+              <div class="w-8 h-[1px] bg-primary"></div>
+              <span class="text-[8px] md:text-[10px] font-black text-primary uppercase tracking-widest">Ingeniería</span>
+            </div>
+            <h3 class="text-slate-900 font-display font-bold text-xl md:text-3xl uppercase text-right">Grado 5</h3>
+            <p class="text-slate-500 text-[10px] md:text-sm mt-2">Titanio biocompatible de alta estabilidad.</p>
           </div>
         </div>
+      </section>
 
-        <!-- ETIQUETAS TÉCNICAS (4 esquinas) -->
-        <div id="label-tl" class="absolute left-6 md:left-24 top-[15%] opacity-0 max-w-[180px] md:max-w-xs">
-          <div class="flex items-center gap-4 mb-2">
-            <div class="w-8 h-[1px] bg-primary"></div>
-            <span class="text-[8px] md:text-[10px] font-black text-primary uppercase tracking-widest">Material</span>
-          </div>
-          <h3 class="text-slate-900 font-display font-bold text-xl md:text-3xl">Zirconio Monoblock</h3>
-          <p class="text-slate-500 text-[10px] md:text-sm mt-2">Translucidez natural y resistencia superior a 1200 MPa.</p>
-        </div>
+      <Experience />
+    </div>
 
-        <div id="label-tr" class="absolute right-6 md:right-24 top-[15%] opacity-0 text-right max-w-[180px] md:max-w-xs">
-          <div class="flex items-center gap-4 flex-row-reverse mb-2">
-            <div class="w-8 h-[1px] bg-primary"></div>
-            <span class="text-[8px] md:text-[10px] font-black text-primary uppercase tracking-widest">Acreditación</span>
-          </div>
-          <h3 class="text-slate-900 font-display font-bold text-xl md:text-3xl">Calidad Certificada</h3>
-          <p class="text-slate-500 text-[10px] md:text-sm mt-2">Cumplimiento estricto de la normativa ISO 13485.</p>
-        </div>
-
-        <div id="label-bl" class="absolute left-6 md:left-24 bottom-[15%] opacity-0 max-w-[180px] md:max-w-xs">
-          <div class="flex items-center gap-4 mb-2">
-            <div class="w-8 h-[1px] bg-primary"></div>
-            <span class="text-[8px] md:text-[10px] font-black text-primary uppercase tracking-widest">Confianza</span>
-          </div>
-          <h3 class="text-slate-900 font-display font-bold text-xl md:text-3xl">Garantía Oficial</h3>
-          <p class="text-slate-500 text-[10px] md:text-sm mt-2">Respaldo total y cobertura vitalicia en componentes.</p>
-        </div>
-
-        <div id="label-br" class="absolute right-6 md:right-24 bottom-[15%] opacity-0 text-right max-w-[180px] md:max-w-xs">
-          <div class="flex items-center gap-4 flex-row-reverse mb-2">
-            <div class="w-8 h-[1px] bg-primary"></div>
-            <span class="text-[8px] md:text-[10px] font-black text-primary uppercase tracking-widest">Base</span>
-          </div>
-          <h3 class="text-slate-900 font-display font-bold text-xl md:text-3xl">Titanio Grado 5</h3>
-          <p class="text-slate-500 text-[10px] md:text-sm mt-2">Aleación biocompatible Ti-6Al-4V optimizada.</p>
-        </div>
-      </div>
-    </section>
-
-    <Experience />
-
-    <!-- SECCIÓN RECURSOS CON DIFUMINADO -->
+    <!-- SECCIÓN RECURSOS CON DIFUMINADO HACIA BLANCO -->
     <section id="evidencia" class="min-h-[80vh] flex flex-col items-center justify-center px-8 relative z-30 transition-mask">
       <div class="max-w-2xl text-center">
         <h2 class="text-slate-900 font-display text-3xl md:text-4xl font-bold tracking-tight">Recursos Clínicos</h2>
-        <p class="text-slate-500 mt-4 text-sm md:text-lg leading-relaxed">Guías quirúrgicas detalladas y estudios de biocompatibilidad.</p>
+        <p class="text-slate-500 mt-4 text-sm md:text-lg leading-relaxed">Guías quirúrgicas y estudios de biocompatibilidad.</p>
         <div class="mt-8 flex flex-wrap justify-center gap-4">
           <button class="px-8 py-3 bg-slate-900 text-white font-bold rounded-full hover:scale-105 transition-transform text-xs">Catálogo PDF</button>
           <button class="px-8 py-3 bg-white/50 border border-slate-200 text-slate-800 font-bold rounded-full text-xs hover:bg-white transition-all">Estudios</button>
@@ -96,12 +99,12 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style>
-  /* ✅ FONDO UNIFICADO PARA TODA LA PÁGINA */
-  .main-gradient {
+  /* ✅ FONDO DE ESTUDIO UNIFICADO */
+  .studio-scene {
     background: 
       radial-gradient(circle at 95% 20%, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 40%),
       radial-gradient(circle at 5% 50%, rgba(226, 232, 240, 0.4) 0%, rgba(226, 232, 240, 0) 30%),
-      linear-gradient(180deg, #f8fafc 0%, #d1dbe5 40%, #ffffff 100%);
+      linear-gradient(180deg, #f8fafc 0%, #d1dbe5 100%);
   }
 
   .stage {
@@ -121,9 +124,9 @@ import Footer from '../components/Footer.astro';
     justify-content: center;
   }
 
-  /* ✅ TRANSICIÓN SUAVE ENTRE SECCIONES */
+  /* ✅ DIFUMINADO FINAL */
   .transition-mask {
-    background: linear-gradient(to bottom, transparent, #ffffff 40%);
+    background: linear-gradient(to bottom, #d1dbe5 0%, #ffffff 40%);
   }
 
   .component-layer {
@@ -157,27 +160,54 @@ import Footer from '../components/Footer.astro';
         invalidateOnRefresh: true
       }
     });
-
-    if (isDesktop) {
-      mainTl.to("#heroText", { opacity: 0, y: -60, duration: 0.5 }, 0)
-        .to("#implantAssembly", { scale: 0.48, y: -140, rotateZ: 35, duration: 1.5, ease: "power2.inOut" }, 0)
-        .to("#part-base-unit", { top: "700px", duration: 1.5, ease: "expo.inOut" }, 0.1)
-        .to("#rim-light", { scale: 1.5, opacity: 0.4, duration: 1.5 }, 0)
-        .to("#label-tl, #label-tr", { opacity: 1, y: -20, duration: 0.8 }, 0.3)
-        .to("#label-bl, #label-br", { opacity: 1, y: 20, duration: 0.8 }, 0.5);
-    } else {
-      gsap.set("#implantAssembly", { scale: 0.3, y: 20 });
-      mainTl.to("#heroText", { opacity: 0, y: -150, duration: 0.5 }, 0)
-        .to("#implantAssembly", { scale: 0.22, y: -120, rotateZ: 15, duration: 1 }, 0)
-        .to("#part-base-unit", { top: "850px", duration: 1 }, 0.1)
-        .to("#label-tl, #label-br", { opacity: 1, scale: 0.8, y: -60, duration: 0.8 }, 0.3)
-        .to("#label-bl, #label-br", { opacity: 1, scale: 0.8, y: 60, duration: 0.8 }, 0.5);
-    }
+if (isDesktop) {
+  mainTl.to("#heroText", { opacity: 0, y: -60, duration: 0.5 }, 0)
+    // Bajado de -180 a -100 para centrar mejor
+    .to("#implantAssembly", { scale: 0.48, y: -100, rotateZ: 35, duration: 1.5, ease: "power2.inOut" }, 0)
+    .to("#part-base-unit", { top: "650px", duration: 1.5, ease: "expo.inOut" }, 0.1)
+    .to("#rim-light", { scale: 1.2, opacity: 0.3, duration: 1.5 }, 0)
+    .to("#label-tl, #label-tr", { opacity: 1, y: -20, duration: 0.8 }, 0.3)
+    .to("#label-bl, #label-br", { opacity: 1, y: 20, duration: 0.8 }, 0.5);
+} else {
+  gsap.set("#implantAssembly", { scale: 0.3, y: 20 });
+  gsap.set(".data-chip", { display: "none" });
+  mainTl.to("#heroText", { opacity: 0, y: -150, duration: 0.5 }, 0)
+    .to("#implantAssembly", { scale: 0.22, y: -120, rotateZ: 15, duration: 1 }, 0)
+    .to("#part-base-unit", { top: "850px", duration: 1 }, 0.1)
+    .to("#label-tl, #label-br", { opacity: 1, scale: 0.8, y: -60, duration: 0.8 }, 0.3)
+    .to("#label-bl, #label-br", { opacity: 1, scale: 0.8, y: 60, duration: 0.8 }, 0.5);
+}
   });
 
-  if (window.innerWidth > 768) {
-    window.addEventListener("mousemove", (e) => {
-      const y = (e.clientY - window.innerHeight / 2) / window.innerHeight;
-      const x = (e.clientX - window.innerWidth / 2) / window.innerWidth;
-      gsap.to("#implantAssembly", {
-        y: (ScrollTrigger.getById("sistema")?.progress > 0 ? -140 : 0) + (y * 30
+  // ✅ INTERACTIVIDAD POR HOVER (Solo al pasar por encima)
+  const assembly = document.getElementById('implantAssembly');
+  
+  if (window.innerWidth > 768 && assembly) {
+    assembly.addEventListener("mousemove", (e) => {
+      const rect = assembly.getBoundingClientRect();
+      const x = (e.clientX - (rect.left + rect.width / 2)) / rect.width;
+      const y = (e.clientY - (rect.top + rect.height / 2)) / rect.height;
+      
+      gsap.to("#crown-inner, #base-inner", {
+        x: x * 30,
+        y: y * 30,
+        rotateZ: x * 5,
+        duration: 1,
+        ease: "power2.out"
+      });
+      
+      gsap.to("#rim-light", {
+        x: x * 50,
+        y: y * 50,
+        duration: 1.5,
+        ease: "power2.out"
+      });
+    });
+
+    assembly.addEventListener("mouseleave", () => {
+      gsap.to("#crown-inner, #base-inner, #rim-light", {
+        x: 0, y: 0, rotateZ: 0, duration: 2, ease: "elastic.out(1, 0.5)"
+      });
+    });
+  }
+</script>
